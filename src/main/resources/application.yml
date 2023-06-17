@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: none
+        show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rickandmorty
+    username: admin
+    password: password
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:/schema.sql
+      continue-on-error: true
+
+rest:
+  endpoint: https://rickandmortyapi.com/api
