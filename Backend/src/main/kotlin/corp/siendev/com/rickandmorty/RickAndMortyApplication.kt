@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class RickAndMortyApplication
 
 fun main(args: Array<String>) {
-    runApplication<RickAndMortyApplication>(*args)
+	runApplication<RickAndMortyApplication>(*args)
 }
