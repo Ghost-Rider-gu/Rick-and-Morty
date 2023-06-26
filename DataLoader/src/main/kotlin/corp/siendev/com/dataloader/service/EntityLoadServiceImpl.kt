@@ -23,12 +23,17 @@ class EntityLoadServiceImpl(private val okHttpClient: OkHttpClient): EntityLoadS
     }
 
     private fun getResponse(requestUrl: String): String {
-        val request: Request = Request.Builder()
-            .url(requestUrl)
-            .build()
+        val emptyResult = ""
+        return try {
+            val request: Request = Request.Builder()
+                .url(requestUrl)
+                .build()
 
-        val call: Call = okHttpClient.newCall(request)
-        val response: Response = call.execute()
-        return response.body!!.string()
+            val call: Call = okHttpClient.newCall(request)
+            val response: Response = call.execute()
+            response.body?.string() ?: emptyResult
+        } catch (ex: Exception) {
+            emptyResult
+        }
     }
 }
