@@ -6,7 +6,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 
-class EntityLoadServiceImpl(private val okHttpClient: OkHttpClient): EntityLoadService {
+class EntityLoadServiceImpl: EntityLoadService {
+    private val okHttpClient = OkHttpClient()
+
     override fun getCharacterById(id: Int): String {
         val endpoint = "${EndpointConstants.MAIN_ENDPOINT}/${EndpointConstants.CHARACTER_PATH}/$id"
         return getResponse(endpoint)
