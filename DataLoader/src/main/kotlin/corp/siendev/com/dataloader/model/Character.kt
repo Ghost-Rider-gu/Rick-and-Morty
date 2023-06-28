@@ -1,5 +1,7 @@
 package corp.siendev.com.dataloader.model
 
+import corp.siendev.com.dataloader.consts.SqlWriterConstants
+
 data class Character(
     val id: Int,
     val name: String,
@@ -33,5 +35,9 @@ data class Character(
         result = 31 * result + image.hashCode()
         result = 31 * result + episode.contentHashCode()
         return result
+    }
+
+    override fun toString(): String {
+        return "INSERT INTO ${SqlWriterConstants.CHARACTER_TABLE_NAME} VALUES ($id, '$name', '$status', '$species', '${origin.name}', '$image');"
     }
 }
