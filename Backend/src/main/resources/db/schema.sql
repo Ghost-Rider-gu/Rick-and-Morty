@@ -1,6 +1,6 @@
 /* Create location table */
-DROP TABLE IF EXISTS location;
-CREATE TABLE IF NOT EXISTS location
+DROP TABLE IF EXISTS public.location;
+CREATE TABLE IF NOT EXISTS public.location
 (
     id bigint NOT NULL,
     name character varying(60) NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS location
 );
 
 /* Create episode table */
-DROP TABLE IF EXISTS episode;
-CREATE TABLE IF NOT EXISTS episode
+DROP TABLE IF EXISTS public.episode;
+CREATE TABLE IF NOT EXISTS public.episode
 (
     id bigint NOT NULL,
     name character varying(80) NOT NULL,
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS episode
 );
 
 /* Create character table */
-DROP TABLE IF EXISTS "character";
-CREATE TABLE IF NOT EXISTS "character"
+DROP TABLE IF EXISTS public."character";
+CREATE TABLE IF NOT EXISTS public."character"
 (
     id bigint NOT NULL,
     name character varying(150) NOT NULL,
@@ -42,13 +42,12 @@ CREATE TABLE IF NOT EXISTS "character"
 );
 
 /* Create character to episode table (many to many) */
-DROP TABLE IF EXISTS character_episode;
-CREATE TABLE IF NOT EXISTS character_episode
+DROP TABLE IF EXISTS public.character_episode;
+CREATE TABLE IF NOT EXISTS public.character_episode
 (
-    id bigint NOT NULL,
     character_id bigint NOT NULL,
     episode_id bigint NOT NULL,
-    CONSTRAINT id_character_episode PRIMARY KEY (id),
+    CONSTRAINT id_character_episode PRIMARY KEY (character_id, episode_id),
     CONSTRAINT actual_character_id FOREIGN KEY (character_id)
         REFERENCES "character" (id) MATCH SIMPLE
         ON UPDATE CASCADE
