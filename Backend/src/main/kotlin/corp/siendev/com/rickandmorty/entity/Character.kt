@@ -1,0 +1,46 @@
+package corp.siendev.com.rickandmorty.entity
+
+import jakarta.persistence.CascadeType
+import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.JoinTable
+import jakarta.persistence.ManyToMany
+import jakarta.validation.constraints.NotNull
+
+@Entity
+data class Character(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+
+    @NotNull
+    val name: String,
+
+    @NotNull
+    val status: String,
+
+    @NotNull
+    val species: String,
+
+    @NotNull
+    val origin: String,
+
+    @NotNull
+    val image: String,
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = [
+        CascadeType.PERSIST,
+        CascadeType.MERGE,
+        CascadeType.DETACH,
+        CascadeType.REFRESH
+    ])
+    @JoinTable(name = "character_episode",
+        joinColumns = [JoinColumn(name = "character_id")],
+        inverseJoinColumns = [JoinColumn(name = "episode_id")]
+    )
+    val episodes: List<Episode>
+)
