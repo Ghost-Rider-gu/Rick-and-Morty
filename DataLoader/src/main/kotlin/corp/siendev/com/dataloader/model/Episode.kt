@@ -9,6 +9,6 @@ data class Episode(
     val episode: String
 ) {
     override fun toString(): String {
-        return "INSERT INTO ${SqlWriterConstants.EPISODE_TABLE_NAME} VALUES ($id, \"$name\", \"$airDate\", \"$episode\");"
+        return "INSERT INTO ${SqlWriterConstants.EPISODE_TABLE_NAME} VALUES ($id, $$$name$$, $$$airDate$$, $$$episode$$);"
     }
 }

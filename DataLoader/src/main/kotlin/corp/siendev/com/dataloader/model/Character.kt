@@ -38,6 +38,6 @@ data class Character(
     }
 
     override fun toString(): String {
-        return "INSERT INTO ${SqlWriterConstants.CHARACTER_TABLE_NAME} VALUES ($id, \"$name\", \"$status\", \"$species\", \"${origin.name}\", \"$image\");"
+        return "INSERT INTO ${SqlWriterConstants.CHARACTER_TABLE_NAME} VALUES ($id, $$$name$$, $$$status$$, $$$species$$, $$${origin.name}$$, $$$image$$);"
     }
 }

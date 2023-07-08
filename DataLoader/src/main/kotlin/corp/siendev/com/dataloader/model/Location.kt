@@ -9,6 +9,6 @@ data class Location(
     val dimension: String
 ) {
     override fun toString(): String {
-        return "INSERT INTO ${SqlWriterConstants.LOCATION_TABLE_NAME} VALUES ($id, \"$name\", \"$type\", \"$dimension\");"
+        return "INSERT INTO ${SqlWriterConstants.LOCATION_TABLE_NAME} VALUES ($id, $$$name$$, $$$type$$, $$$dimension$$);"
     }
 }
