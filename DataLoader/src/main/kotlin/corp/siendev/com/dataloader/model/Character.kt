@@ -1,6 +1,7 @@
 package corp.siendev.com.dataloader.model
 
 import corp.siendev.com.dataloader.consts.SqlWriterConstants
+import corp.siendev.com.dataloader.utils.EntityUtils
 
 data class Character(
     val id: Int,
@@ -38,6 +39,7 @@ data class Character(
     }
 
     override fun toString(): String {
-        return "INSERT INTO ${SqlWriterConstants.CHARACTER_TABLE_NAME} VALUES ($id, $$$name$$, $$$status$$, $$$species$$, $$${origin.name}$$, $$$image$$);"
+        val locationId = EntityUtils.getLocationIdFromUrl(origin.url)
+        return "INSERT INTO ${SqlWriterConstants.CHARACTER_TABLE_NAME} VALUES ($id, $$$name$$, $$$status$$, $$$species$$, $$${origin.name}$$, $$$image$$, $locationId);"
     }
 }
