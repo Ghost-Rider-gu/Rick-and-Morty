@@ -1,3 +1,8 @@
+server:
+  port: 8090
+springdoc:
+  swagger-ui:
+    path: rest-api-docs
 spring:
   jpa:
     properties:
