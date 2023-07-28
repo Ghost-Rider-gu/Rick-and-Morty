@@ -7,7 +7,7 @@ import java.util.Optional
 
 @Repository
 interface CharacterRepository: JpaRepository<Character, Long> {
-    fun getCharacterByName(characterName: String): Optional<Character>
-    fun getCharactersBySpecies(species: String): List<Character>
-    fun getCharactersByStatus(status: String): List<Character>
+    fun findCharacterByName(characterName: String): Optional<Character>
+    fun findAllCharactersBySpecies(species: String): List<Character>
+    fun findAllCharactersByStatus(status: String): List<Character>
 }

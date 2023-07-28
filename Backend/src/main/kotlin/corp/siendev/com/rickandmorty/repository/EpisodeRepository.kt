@@ -7,6 +7,6 @@ import java.util.Optional
 
 @Repository
 interface EpisodeRepository: JpaRepository<Episode, Long> {
-    fun getEpisodeByName(episodeName: String): Optional<Episode>
-    fun getEpisodesBySeason(season: String): List<Episode>
+    fun findEpisodeByName(episodeName: String): Optional<Episode>
+    fun findAllEpisodesBySeason(season: String): List<Episode>
 }
