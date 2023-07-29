@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotNull
 data class Location(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    var id: Long,
 
     @NotNull
     val name: String,
