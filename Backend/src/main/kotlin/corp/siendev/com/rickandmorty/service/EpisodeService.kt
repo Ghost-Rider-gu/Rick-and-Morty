@@ -2,17 +2,19 @@ package corp.siendev.com.rickandmorty.service
 
 import corp.siendev.com.rickandmorty.entity.Episode
 import corp.siendev.com.rickandmorty.repository.EpisodeRepository
+import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 @Service
 class EpisodeService(private val episodeRepository: EpisodeRepository) {
-    fun getEpisodeByName(episodeName: String): Optional<Episode> {
+    fun getEpisodeByName(episodeName: String): Episode {
         return episodeRepository.findEpisodeByName(episodeName)
+            .orElseThrow { EntityNotFoundException("Couldn't find episode by name: $episodeName") }
     }
 
-    fun getEpisodeById(episodeId: Long): Optional<Episode> {
+    fun getEpisodeById(episodeId: Long): Episode {
         return episodeRepository.findById(episodeId)
+            .orElseThrow { EntityNotFoundException("Couldn't find episode by id: $episodeId") }
     }
 
     fun getAllEpisodesBySeason(season: String): List<Episode> {
@@ -28,10 +30,24 @@ class EpisodeService(private val episodeRepository: EpisodeRepository) {
     }
 
     fun updateEpisode(episode: Episode) {
-        episodeRepository.save(episode)
+        if (episodeRepository.existsById(episode.id)) {
+            episodeRepository.save(Episode(
+                episode.id,
+                episode.name,
+                episode.airDate,
+                episode.episode,
+                episode.characters
+            ))
+        } else {
+            throw EntityNotFoundException("Couldn't find episode by id: ${episode.id}")
+        }
     }
 
     fun deleteEpisode(episodeId: Long) {
-        episodeRepository.deleteById(episodeId)
+        if (episodeRepository.existsById(episodeId)) {
+            episodeRepository.deleteById(episodeId)
+        } else {
+            throw EntityNotFoundException("Couldn't find episode by id: $episodeId")
+        }
     }
 }
