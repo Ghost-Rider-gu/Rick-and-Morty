@@ -1,12 +1,23 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Header from "./component/Header.jsx";
+import Footer from "./component/Footer.jsx";
+
 import './App.css'
 
 function App() {
   return (
-    <>
-      <div>
-          <h1>Rick and Morty UI</h1>
-      </div>
-    </>
+      <Container fluid>
+          <Row>
+              <Header/>
+          </Row>
+          <Row>
+              Main context
+          </Row>
+          <Row>
+              <Footer/>
+          </Row>
+      </Container>
   )
 }
 
